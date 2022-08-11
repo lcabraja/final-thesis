@@ -7,22 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		836F105828A4211700ED3FFB /* Final_ThesisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836F105728A4211700ED3FFB /* Final_ThesisApp.swift */; };
+		836F105828A4211700ED3FFB /* FinalThesisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836F105728A4211700ED3FFB /* FinalThesisApp.swift */; };
 		836F105A28A4211700ED3FFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836F105928A4211700ED3FFB /* ContentView.swift */; };
 		836F105C28A4211900ED3FFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836F105B28A4211900ED3FFB /* Assets.xcassets */; };
 		836F105F28A4211900ED3FFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836F105E28A4211900ED3FFB /* Preview Assets.xcassets */; };
-		836F106128A4211900ED3FFB /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836F106028A4211900ED3FFB /* Persistence.swift */; };
-		836F106428A4211900ED3FFB /* Final_Thesis.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 836F106228A4211900ED3FFB /* Final_Thesis.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		836F105428A4211700ED3FFB /* Final Thesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Final Thesis.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		836F105728A4211700ED3FFB /* Final_ThesisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Final_ThesisApp.swift; sourceTree = "<group>"; };
+		836F105728A4211700ED3FFB /* FinalThesisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalThesisApp.swift; sourceTree = "<group>"; };
 		836F105928A4211700ED3FFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		836F105B28A4211900ED3FFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		836F105E28A4211900ED3FFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		836F106028A4211900ED3FFB /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		836F106328A4211900ED3FFB /* Final_Thesis.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Final_Thesis.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +51,9 @@
 		836F105628A4211700ED3FFB /* Final Thesis */ = {
 			isa = PBXGroup;
 			children = (
-				836F105728A4211700ED3FFB /* Final_ThesisApp.swift */,
+				836F105728A4211700ED3FFB /* FinalThesisApp.swift */,
 				836F105928A4211700ED3FFB /* ContentView.swift */,
 				836F105B28A4211900ED3FFB /* Assets.xcassets */,
-				836F106028A4211900ED3FFB /* Persistence.swift */,
-				836F106228A4211900ED3FFB /* Final_Thesis.xcdatamodeld */,
 				836F105D28A4211900ED3FFB /* Preview Content */,
 			);
 			path = "Final Thesis";
@@ -143,10 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				836F106128A4211900ED3FFB /* Persistence.swift in Sources */,
 				836F105A28A4211700ED3FFB /* ContentView.swift in Sources */,
-				836F106428A4211900ED3FFB /* Final_Thesis.xcdatamodeld in Sources */,
-				836F105828A4211700ED3FFB /* Final_ThesisApp.swift in Sources */,
+				836F105828A4211700ED3FFB /* FinalThesisApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,19 +339,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		836F106228A4211900ED3FFB /* Final_Thesis.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				836F106328A4211900ED3FFB /* Final_Thesis.xcdatamodel */,
-			);
-			currentVersion = 836F106328A4211900ED3FFB /* Final_Thesis.xcdatamodel */;
-			path = Final_Thesis.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 836F104C28A4211700ED3FFB /* Project object */;
 }

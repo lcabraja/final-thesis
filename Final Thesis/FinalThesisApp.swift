@@ -2,7 +2,7 @@
 //  FinalThesisApp.swift
 //  Final Thesis
 //
-//  Created by doss on 8/10/22.
+//  Created by lcabraja on 8/10/22.
 //
 
 import SwiftUI
