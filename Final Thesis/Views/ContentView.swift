@@ -8,11 +8,14 @@
 import SwiftUI
 import Charts
 import HealthKit
+import TabularData
+import CreateML
 
 struct ContentView: View {
     
     private var healthStore: HealthStore?
     @State private var dataPoints: [String: [DataPoint]] = [:]
+    @State private var MLDataPoints: [String: [DataPoint]] = [:]
     @State private var isPresentingAddPane = false
     @State private var isPresentingConfigurationPane = false
     @State private var selectedDataPoint: String = ""
@@ -88,11 +91,20 @@ struct ContentView: View {
                     trainData()
                 }
                 List {
-                    ForEach(Array(dataPoints.keys), id: \.self) { key in
+                    ForEach(Array(dataPoints.keys).sorted(), id: \.self) { key in
                         Section(header: Text(key)) {
                             NavigationLink(destination: DetailView(key: key, data: dataPoints[key]!)) {
-                                Chart(dataPoints[key]!) { dataPoint in
-                                    LineMark(x: .value("Date", dataPoint.date), y: .value("Value", dataPoint.value))
+                                Chart {
+                                    ForEach(dataPoints[key]!) { dataPoint in
+                                        LineMark(x: .value("Date", dataPoint.date), y: .value("Value", dataPoint.value), series: .value("Data", "Raw"))
+                                            .foregroundStyle(Color.blue)
+                                    }
+                                    if let mlDataPoint = MLDataPoints[key] {
+                                        ForEach(MLDataPoints[key]!) { dataPoint in
+                                            LineMark(x: .value("Date", dataPoint.date), y: .value("Value", dataPoint.value), series: .value("Data", "ML Predicted"))
+                                                .foregroundStyle(Color.green)
+                                        }
+                                    }
                                 }
                                 .padding(.vertical)
                                 .frame(minHeight: 150)
@@ -179,9 +191,59 @@ struct ContentView: View {
     }
     
     func trainData() {
-        
-        
-        
+        do {
+            
+            let featureNames = dataPoints.keys
+            
+            var trainingKeywords: [[String: Double]] = []
+            var trainingTargets: [Double] = []
+            
+            for key in dataPoints.keys {
+                for item in dataPoints[key]! {
+                    trainingKeywords.append([item.date.formatted(): item.value])
+                    trainingTargets.append(selectedDataPoint == key ? 1.0 * item.value : -1.0 * item.value)
+                }
+            }
+            
+            var trainingData = DataFrame()
+            trainingData.append(column: Column(name: "keywords", contents: trainingKeywords))
+            trainingData.append(column: Column(name: "target", contents: trainingTargets))
+            
+            print("Begin training...")
+            let model = try MLLinearRegressor(trainingData: trainingData, targetColumn: "target")
+            print("Training complete!")
+            
+            var keywords: [[String: Double]] = []
+            
+            for key in dataPoints.keys {
+                for item in dataPoints[key]! {
+                    keywords.append([key: item.value])
+                }
+            }
+            
+            var inputData = DataFrame()
+            inputData.append(column: Column(name: "keywords", contents: keywords))
+            
+            let predictions = try model.predictions(from: inputData)
+            
+            print(String(describing: predictions))
+            
+            for key in dataPoints.keys {
+                var newItem = [DataPoint]()
+                for (index, item) in dataPoints[key]!.enumerated() {
+                    let modifier = Double(String(describing: predictions[index] ?? "0")) ?? 0.0
+                    let positiveModifier = abs(modifier)
+                    let goodModifier = positiveModifier > 1 ? positiveModifier : 1 + positiveModifier
+                    print("MODIFIER: \(goodModifier)")
+                    newItem.append(DataPoint(value: item.value * goodModifier, date: Calendar.current.date(byAdding: .day, value: selectedDateRange.rawValue, to: item.date)!))
+                }
+                MLDataPoints[key] = newItem
+//                dataPoints["ML Predicted \(key)"] = newItem
+                
+            }
+        } catch {
+            print("Error while training \(error)")
+        }
     }
 }
 
