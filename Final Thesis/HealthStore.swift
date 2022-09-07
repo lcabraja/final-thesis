@@ -51,9 +51,9 @@ class HealthStore {
         }
     }
     
-    func calculateSteps(completion: @escaping (HKStatisticsCollection?) -> Void) {
+    func calculateSteps(dateRange: Int, completion: @escaping (HKStatisticsCollection?) -> Void) {
         let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        let startDate = Calendar.current.date(byAdding: .day, value: -dateRange, to: Date())
         let anchorDate = Date.mondayAt12AM()
         let daily = DateComponents(day: 1)
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictEndDate)
@@ -74,14 +74,14 @@ class HealthStore {
         }
     }
     
-    func calculateSleep(completion: @escaping ([HKSample]?) -> Void) {
+    func calculateSleep(dateRange: Int, completion: @escaping ([HKSample]?) -> Void) {
         let sleepType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)!
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        let startDate = Calendar.current.date(byAdding: .day, value: -dateRange, to: Date())
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictEndDate)
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
         
-        sleepQuery = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: 100, sortDescriptors: [sortDescriptor]) { (_, tmpResult, error) -> Void in
+        sleepQuery = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: 10000, sortDescriptors: [sortDescriptor]) { (_, tmpResult, error) -> Void in
 //            print("Health Data: \(String(describing: tmpResult![0]))")
             completion(tmpResult)
         }
@@ -91,9 +91,9 @@ class HealthStore {
         }
     }
     
-    func calculateExercise(completion: @escaping (HKStatisticsCollection?) -> Void) {
+    func calculateExercise(dateRange: Int, completion: @escaping (HKStatisticsCollection?) -> Void) {
         let exerciseType = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime)!
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        let startDate = Calendar.current.date(byAdding: .day, value: -dateRange, to: Date())
         let anchorDate = Date.mondayAt12AM()
         let daily = DateComponents(day: 1)
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictEndDate)

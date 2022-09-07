@@ -14,6 +14,7 @@
 		836F105C28A4211900ED3FFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836F105B28A4211900ED3FFB /* Assets.xcassets */; };
 		836F105F28A4211900ED3FFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836F105E28A4211900ED3FFB /* Preview Assets.xcassets */; };
 		83905F6628B66AF50045AA60 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83905F6528B66AF50045AA60 /* DateExtension.swift */; };
+		83BE54FB28C91F9600BECEA6 /* DateRangeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE54FA28C91F9500BECEA6 /* DateRangeEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		836F105B28A4211900ED3FFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		836F105E28A4211900ED3FFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		83905F6528B66AF50045AA60 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		83BE54FA28C91F9500BECEA6 /* DateRangeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				8341363928A519350079E4C8 /* HealthStore.swift */,
 				8341363B28A51DAB0079E4C8 /* DataPoint.swift */,
+				83BE54FA28C91F9500BECEA6 /* DateRangeEnum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				836F105A28A4211700ED3FFB /* ContentView.swift in Sources */,
 				83905F6628B66AF50045AA60 /* DateExtension.swift in Sources */,
+				83BE54FB28C91F9600BECEA6 /* DateRangeEnum.swift in Sources */,
 				8341363C28A51DAB0079E4C8 /* DataPoint.swift in Sources */,
 				8341363A28A519350079E4C8 /* HealthStore.swift in Sources */,
 				836F105828A4211700ED3FFB /* FinalThesisApp.swift in Sources */,
